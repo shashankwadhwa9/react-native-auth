@@ -39,10 +39,12 @@ class App extends Component {
         switch (this.state.loggedIn) {
             case true:
                 return (
-                    <Button>
-                        Logout
-                    </Button>
-                );
+                    <CardSection>
+                        <Button onPress={() => firebase.auth().signOut()}>
+                            Logout
+                        </Button>
+                    </CardSection>
+               );
 
             case false:
                 return <LoginForm />;
@@ -56,9 +58,7 @@ class App extends Component {
         return (
             <View>
                 <Header headerText="Authentication" />
-                <CardSection>
-                    {this.renderContent()}
-                </CardSection>
+                {this.renderContent()}
             </View>
         );
     }
