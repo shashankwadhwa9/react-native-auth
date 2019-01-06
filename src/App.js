@@ -2,16 +2,24 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import firebase from 'firebase';
 import { Header } from './components/common';
+import {
+    firebaseApiKey,
+    firebaseAuthDomain,
+    firebaseDatabaseURL,
+    firebaseProjectId,
+    firebaseStorageBucket,
+    firebaseMessagingSenderId
+} from './settings.json';
 
 class App extends Component {
     componentWillMount() {
         firebase.initializeApp({
-            apiKey: 'AIzaSyBaifK2FcJzshJ7-rGESH3kuNQ-nwW5ltc',
-            authDomain: 'react-native-auth-7f873.firebaseapp.com',
-            databaseURL: 'https://react-native-auth-7f873.firebaseio.com',
-            projectId: 'react-native-auth-7f873',
-            storageBucket: 'react-native-auth-7f873.appspot.com',
-            messagingSenderId: '335007083439'
+            apiKey: firebaseApiKey,
+            authDomain: firebaseAuthDomain,
+            databaseURL: firebaseDatabaseURL,
+            projectId: firebaseProjectId,
+            storageBucket: firebaseStorageBucket,
+            messagingSenderId: firebaseMessagingSenderId
         });
     }
 
