@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import firebase from '@firebase/app';
 import '@firebase/auth';
-import { Header } from './components/common';
+import { Header, Button, Spinner, CardSection } from './components/common';
 import {
     firebaseApiKey,
     firebaseAuthDomain,
@@ -14,7 +14,7 @@ import {
 import { LoginForm } from './components/LoginForm';
 
 class App extends Component {
-    state = { loggedIn: false };
+    state = { loggedIn: null };
 
     componentWillMount() {
         firebase.initializeApp({
@@ -35,11 +35,30 @@ class App extends Component {
         });
     }
 
+    renderContent() {
+        switch (this.state.loggedIn) {
+            case true:
+                return (
+                    <Button>
+                        Logout
+                    </Button>
+                );
+
+            case false:
+                return <LoginForm />;
+
+            default:
+                return <Spinner size="large" />;
+        }
+    }
+
     render() {
         return (
             <View>
                 <Header headerText="Authentication" />
-                <LoginForm />
+                <CardSection>
+                    {this.renderContent()}
+                </CardSection>
             </View>
         );
     }
